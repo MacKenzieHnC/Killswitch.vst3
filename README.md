@@ -7,7 +7,14 @@ A lightweight killswitch plugin for audio and midi. Essentially an on/off switch
 # Behavior
 When used on audio input, completely blocks signal from passing through.
 
-When used on midi, behaves almost identically. However, [Midi is quirky.](#midi-is-quirky) tl;dr It prevents "note on" messages from passing through, and silences any already playing notes. When killswitch is released, it passes a new "note on" message for any notes that would be playing if the killswitch wasn't active. At this time, non-note messages pass through unaffected.
+When used on MIDI, behaves almost identically. However, MIDI is quirky. tl;dr It prevents "note on" messages from passing through, and silences any already playing notes. When killswitch is released, it passes a new "note on" message for any notes that would be playing if the killswitch wasn't active. At this time, non-note messages pass through unaffected.
+ 
+[Watch a demo](https://www.youtube.com/watch?v=xBmSd2P3eGI)
+
+# Midi is quirky
+While normal audio sends new information every frame, midi only tells a note to start playing, and then later tells it when to stop. Also, there is no function to change a note's velocity once it has started playing. This means that in order to "resume" a note, the code has to generate a new note. The difference won't be noticeable on low-attack/high-sustain instruments, but on high-attack/low-sustain instruments, you'll hear the difference immediately.
+
+For a more thorough explanation of midi, check out [the official MIDI Association's articles](https://www.midi.org/midi-articles/about-midi-part-3-midi-messages).
 
 # Installation
 ## Windows
@@ -32,8 +39,3 @@ __6.__ In Xcode, select "Product > Run"
 ¯\\_(ツ)\_/¯ I'm so sorry.
 
 Supposedly, [LinVST](https://github.com/osxmidi/LinVst) will let you use the Windows installation instructions. Otherwise, you will have to learn how to install Juce and an IDE, then build this project in the usual way.
-
-# Midi is quirky
-While normal audio sends new information every frame, midi only tells a note to start playing, and then later tells it when to stop. Also, there is no function to change a note's velocity once it has started playing. This means that in order to "resume" a note, the code has to generate a new note. The difference won't be noticeable on low-attack/high-sustain instruments, but on high-attack/low-sustain instruments, you'll hear the difference immediately.
-
-For a more thorough explanation of midi, check out [the official MIDI Association's articles](https://www.midi.org/midi-articles/about-midi-part-3-midi-messages).
