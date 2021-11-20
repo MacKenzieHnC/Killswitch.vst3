@@ -1,6 +1,9 @@
 # Killswitch.vst3
 A lightweight killswitch plugin for audio and midi. Essentially an on/off switch for any point in your chain.
 
+<a href='https://ko-fi.com/mackenziehnc' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+ 
+
 # Behavior
 When used on audio input, completely blocks signal from passing through.
 
