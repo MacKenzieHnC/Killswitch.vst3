@@ -13,6 +13,11 @@
 KillswitchAudioProcessorEditor::KillswitchAudioProcessorEditor (KillswitchAudioProcessor& p)
     : AudioProcessorEditor (&p), audioProcessor (p)
 {
+    killswitch.setColour(juce::TextButton::buttonColourId, juce::Colours::grey);
+    killswitch.setButtonText("Kill");
+    addAndMakeVisible (killswitch);
+    killswitch.addListener(this);
+
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
     setSize (400, 300);
@@ -24,17 +29,25 @@ KillswitchAudioProcessorEditor::~KillswitchAudioProcessorEditor()
 
 //==============================================================================
 void KillswitchAudioProcessorEditor::paint (juce::Graphics& g)
-{
-    // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll (getLookAndFeel().findColour (juce::ResizableWindow::backgroundColourId));
-
-    g.setColour (juce::Colours::white);
-    g.setFont (15.0f);
-    g.drawFittedText ("Hello World!", getLocalBounds(), juce::Justification::centred, 1);
+{   
+    // fill the whole window white
+    g.fillAll (juce::Colours::white);
 }
 
 void KillswitchAudioProcessorEditor::resized()
 {
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+    killswitch.centreWithSize(100,100);
+}
+
+void KillswitchAudioProcessorEditor::buttonClicked (juce::Button* button)
+{
+}
+
+void KillswitchAudioProcessorEditor::buttonStateChanged (juce::Button* button)
+{
+    if(button == &killswitch)
+        if(button->isDown())
+            audioProcessor.killswitchOn->AudioParameterBool::operator=(true);
+        else
+            audioProcessor.killswitchOn->AudioParameterBool::operator=(false);
 }

@@ -22,6 +22,11 @@ KillswitchAudioProcessor::KillswitchAudioProcessor()
                        )
 #endif
 {
+    addParameter (killswitchOn = new juce::AudioParameterBool ("killswitchOn",
+                                                                "Killswitch",
+                                                                false));
+    justToggled = false;
+    lastMode = false;
 }
 
 KillswitchAudioProcessor::~KillswitchAudioProcessor()
@@ -144,18 +149,99 @@ void KillswitchAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
-    // This is the place where you'd normally do the guts of your plugin's
-    // audio processing...
-    // Make sure to reset the state if your inner loop is processing
-    // the samples and the outer loop is handling the channels.
-    // Alternatively, you can process the samples with the channels
-    // interleaved by keeping the same state.
-    for (int channel = 0; channel < totalNumInputChannels; ++channel)
+    // Split the incoming midi
+    juce::MidiBuffer noteOn;
+    juce::MidiBuffer noteOff;
+    juce::MidiBuffer effects;
+    for (const auto metadata : midiMessages)
     {
-        auto* channelData = buffer.getWritePointer (channel);
+        auto message = metadata.getMessage();
+        auto time = metadata.samplePosition;
 
-        // ..do something to the data...
+        if (message.isNoteOn())
+            noteOn.addEvent(juce::MidiMessage(message), time);
+        else if (message.isNoteOff())
+            noteOff.addEvent(juce::MidiMessage(message), time);
+        else
+            effects.addEvent(juce::MidiMessage(message), time);
     }
+    midiMessages.clear(); // midiMessages acts as a temp buffer from here on out
+
+    // Remove note-off from currentlyPlaying
+    for (const auto metadata : currentlyPlaying)
+    {
+        bool found = false;
+        for (const auto off : noteOff)
+        {
+            if (off.getMessage().getNoteNumber() == metadata.getMessage().getNoteNumber() && off.getMessage().getChannel() == metadata.getMessage().getChannel())
+            {
+                found = true;
+                break;
+            }
+        }
+        if (!found)
+            midiMessages.addEvent(juce::MidiMessage(metadata.getMessage()), metadata.samplePosition);
+    }
+    currentlyPlaying.swapWith(midiMessages);
+    midiMessages.clear();
+
+    // Note offs always pass through
+    for (const auto off : noteOff)
+        midiMessages.addEvent(juce::MidiMessage(off.getMessage()), off.samplePosition);
+
+    // Effects always pass through (for now)
+    for (const auto effect : effects)
+        midiMessages.addEvent(juce::MidiMessage(effect.getMessage()), effect.samplePosition);
+    
+
+    // If killswitch is on
+    if (killswitchOn->AudioParameterBool::get())
+    {
+        // Kill audio
+        buffer.clear();
+        
+        // Check if freshly toggled
+        if (!lastMode)
+        {
+            lastMode = true;
+            justToggled = true;
+        }
+        else
+            justToggled = false;
+
+        // Silence all currently audible notes
+        if (justToggled)
+            for (const auto on : currentlyPlaying)
+                midiMessages.addEvent(juce::MidiMessage::noteOff(on.getMessage().getChannel(), on.getMessage().getNoteNumber()), on.samplePosition+1);
+    } 
+    // If killswitch is off
+    else
+    {
+        // Check if freshly toggled
+        if (lastMode)
+        {
+            lastMode = false;
+            justToggled = true;
+        }
+        else
+            justToggled = false;
+
+        // if freshly toggled, pass through old notes
+        if (justToggled)
+            for (const auto on : currentlyPlaying)
+                midiMessages.addEvent(juce::MidiMessage(on.getMessage()), on.samplePosition);
+
+        // Pass through new notes
+        for (const auto on : noteOn)
+            midiMessages.addEvent(juce::MidiMessage(on.getMessage()), on.samplePosition);
+    }
+
+    // Add new notes to currentlyPlaying
+    for (const auto on : noteOn)
+        currentlyPlaying.addEvent(juce::MidiMessage(on.getMessage()), on.samplePosition);
+
+     // switch midiMessages
+    midiMessages.swapWith(midiMessages);
 }
 
 //==============================================================================

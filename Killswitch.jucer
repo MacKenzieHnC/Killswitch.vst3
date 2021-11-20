@@ -1,84 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<JUCERPROJECT id="QRFMqm" name="Killswitch" projectType="audioplug" useAppConfig="0"
+<JUCERPROJECT id="vZqnQR" name="Killswitch" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" version="0.01"
               companyName="MacKenzie H&amp;C" companyEmail="mackenziehnc@gmail.com"
-              pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn"
+              pluginManufacturer="MacKenzie H&amp;C"
+			  pluginCharacteristicsValue="pluginProducesMidiOut,pluginWantsMidiIn"
               pluginVST3Category="Tools">
-  <MAINGROUP id="wXFa0s" name="Killswitch">
-    <GROUP id="{A5507049-987F-C1AF-5CDA-3420E7B0D377}" name="Source">
-      <FILE id="ET1rB4" name="PluginProcessor.cpp" compile="1" resource="0"
+  <MAINGROUP id="XRHQwa" name="Killswitch">
+    <GROUP id="{A2828929-F44C-8C64-F35F-4C029558B472}" name="Source">
+      <FILE id="UpC2SM" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
-      <FILE id="BhGWrW" name="PluginProcessor.h" compile="0" resource="0"
+      <FILE id="oyMcfk" name="PluginProcessor.h" compile="0" resource="0"
             file="Source/PluginProcessor.h"/>
-      <FILE id="x8OtMl" name="PluginEditor.cpp" compile="1" resource="0"
+      <FILE id="ZSZyQQ" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
-      <FILE id="hVezmQ" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="xk3HfG" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
-  <EXPORTFORMATS>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="Killswitch"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="Killswitch"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../../../../JUCE/modules"/>
-      </MODULEPATHS>
-    </LINUX_MAKE>
-    <VS2019 targetFolder="Builds/VisualStudio2019">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="Killswitch"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="Killswitch"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../../../../JUCE/modules"/>
-      </MODULEPATHS>
-    </VS2019>
-    <XCODE_MAC targetFolder="Builds/MacOSX">
-      <CONFIGURATIONS>
-        <CONFIGURATION isDebug="1" name="Debug" targetName="Killswitch"/>
-        <CONFIGURATION isDebug="0" name="Release" targetName="Killswitch"/>
-      </CONFIGURATIONS>
-      <MODULEPATHS>
-        <MODULEPATH id="juce_audio_basics" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_devices" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_formats" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_plugin_client" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_processors" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_audio_utils" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_core" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_data_structures" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_events" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_graphics" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_basics" path="../../../../../../JUCE/modules"/>
-        <MODULEPATH id="juce_gui_extra" path="../../../../../../JUCE/modules"/>
-      </MODULEPATHS>
-    </XCODE_MAC>
-  </EXPORTFORMATS>
+	<EXPORTFORMATS>
+		<LINUX_MAKE targetFolder="Builds/LinuxMakefile">
+			<CONFIGURATIONS>
+				<CONFIGURATION isDebug="1" name="Debug" targetName="Killswitch"/>
+				<CONFIGURATION isDebug="0" name="Release" targetName="Killswitch"/>
+			</CONFIGURATIONS>
+			<MODULEPATHS>
+				<MODULEPATH id="juce_audio_basics" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_devices" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_formats" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_plugin_client" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_processors" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_utils" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_core" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_data_structures" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_events" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_graphics" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_gui_basics" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_gui_extra" path="../../../../../../JUCE/modules"/>
+			</MODULEPATHS>
+		</LINUX_MAKE>
+		<VS2019 targetFolder="Builds/VisualStudio2019">
+			<CONFIGURATIONS>
+				<CONFIGURATION isDebug="1" name="Debug" targetName="Killswitch"/>
+				<CONFIGURATION isDebug="0" name="Release" targetName="Killswitch"/>
+			</CONFIGURATIONS>
+			<MODULEPATHS>
+				<MODULEPATH id="juce_audio_basics" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_devices" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_formats" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_plugin_client" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_processors" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_utils" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_core" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_data_structures" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_events" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_graphics" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_gui_basics" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_gui_extra" path="../../../../../../JUCE/modules"/>
+			</MODULEPATHS>
+		</VS2019>
+		<XCODE_MAC targetFolder="Builds/MacOSX">
+			<CONFIGURATIONS>
+				<CONFIGURATION isDebug="1" name="Debug" targetName="Killswitch"/>
+				<CONFIGURATION isDebug="0" name="Release" targetName="Killswitch"/>
+			</CONFIGURATIONS>
+			<MODULEPATHS>
+				<MODULEPATH id="juce_audio_basics" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_devices" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_formats" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_plugin_client" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_processors" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_audio_utils" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_core" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_data_structures" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_events" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_graphics" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_gui_basics" path="../../../../../../JUCE/modules"/>
+				<MODULEPATH id="juce_gui_extra" path="../../../../../../JUCE/modules"/>
+			</MODULEPATHS>
+		</XCODE_MAC>
+	</EXPORTFORMATS>
   <MODULES>
     <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
