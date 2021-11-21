@@ -19,7 +19,7 @@ class KillswitchAudioProcessorEditor  : public juce::AudioProcessorEditor,
 {
 public:
     void buttonClicked (juce::Button* button) override;
-    void KillswitchAudioProcessorEditor::buttonStateChanged (juce::Button* button) override;
+    void buttonStateChanged (juce::Button* button) override;
     KillswitchAudioProcessorEditor (KillswitchAudioProcessor&);
     ~KillswitchAudioProcessorEditor() override;
 
