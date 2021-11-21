@@ -17,6 +17,9 @@ class KillswitchAudioProcessor  : public juce::AudioProcessor
 {
 public:
     juce::AudioParameterBool* killswitchOn;
+
+    juce::AudioProcessorValueTreeState options;
+
     
     //==============================================================================
     KillswitchAudioProcessor();
@@ -56,6 +59,8 @@ public:
     void setStateInformation (const void* data, int sizeInBytes) override;
 
 private:
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameters();
+
     juce::MidiBuffer currentlyPlaying; // Buffer storing the current state of whatever notes would be playing if the killswitch wasn't active.
     bool justToggled; // Whether the killswitch has been toggled on or off this frame.
     bool lastMode; // The state of the killswitch in the last frame (true for active, false for inactive)

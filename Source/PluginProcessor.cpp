@@ -19,11 +19,11 @@ KillswitchAudioProcessor::KillswitchAudioProcessor()
                       #endif
                        .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), options(*this, nullptr, "Options", createParameters())
 #endif
 {
-    addParameter (killswitchOn = new juce::AudioParameterBool ("killswitchOn",
-                                                                "Killswitch",
+    addParameter (killswitchOn = new juce::AudioParameterBool ("KILLSWITCH_ON",
+                                                               "Killswitch",
                                                                 false));
     justToggled = false;
     lastMode = false;
@@ -189,9 +189,10 @@ void KillswitchAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
     for (const auto off : noteOff)
         midiMessages.addEvent(juce::MidiMessage(off.getMessage()), off.samplePosition);
 
-    // Effects always pass through (for now)
-    for (const auto effect : effects)
-        midiMessages.addEvent(juce::MidiMessage(effect.getMessage()), effect.samplePosition);
+    // Effects
+    if (options.getRawParameterValue("BLOCK_NON_NOTES")->load() < 0.5f) // is false?
+        for (const auto effect : effects)
+            midiMessages.addEvent(juce::MidiMessage(effect.getMessage()), effect.samplePosition);
     
 
     // If killswitch is on
@@ -227,7 +228,7 @@ void KillswitchAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, j
             justToggled = false;
 
         // if freshly toggled, pass through old notes
-        if (justToggled)
+        if (justToggled && (options.getRawParameterValue("RESUME_NOTES")->load() > 0.5f))
             for (const auto on : currentlyPlaying)
                 midiMessages.addEvent(juce::MidiMessage(on.getMessage()), on.samplePosition);
 
@@ -258,15 +259,18 @@ juce::AudioProcessorEditor* KillswitchAudioProcessor::createEditor()
 //==============================================================================
 void KillswitchAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
-    // You should use this method to store your parameters in the memory block.
-    // You could do that either as raw data, or use the XML or ValueTree classes
-    // as intermediaries to make it easy to save and load complex data.
+    auto state = options.copyState();
+    std::unique_ptr<juce::XmlElement> xml(state.createXml());
+    copyXmlToBinary(*xml, destData);
 }
 
 void KillswitchAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
-    // You should use this method to restore your parameters from this memory block,
-    // whose contents will have been created by the getStateInformation() call.
+    std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+
+    if (xmlState.get() != nullptr)
+        if (xmlState->hasTagName(options.state.getType()))
+            options.replaceState(juce::ValueTree::fromXml(*xmlState));
 }
 
 //==============================================================================
@@ -274,4 +278,16 @@ void KillswitchAudioProcessor::setStateInformation (const void* data, int sizeIn
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new KillswitchAudioProcessor();
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout KillswitchAudioProcessor::createParameters()
+{
+    std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
+    params.push_back(std::make_unique<juce::AudioParameterBool>("RESUME_NOTES",
+                                                                "Resume notes",
+                                                                true));
+    params.push_back(std::make_unique<juce::AudioParameterBool>("BLOCK_NON_NOTES",
+                                                                "Block Non-notes",
+                                                                false));
+    return { params.begin(), params.end() };
 }
