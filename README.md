@@ -18,21 +18,21 @@ For a more thorough explanation of midi, check out [the official MIDI Associatio
 
 # Installation
 ## Windows
-Windows users get preferential treatment. Simply download the .vst3 file from "Distributions/Windows" folder and copy it into wherever you keep your VSTs (typically "C:\Program Files (x86)\Common Files\VST3").
+Windows users get preferential treatment. [Simply download the "MacKenzieH&C" folder from "Windows" here](https://drive.google.com/drive/folders/1TzjdWOwznmpu03R45NptfqAQHsbZXNCO?usp=sharing) and copy it into wherever you keep your VSTs (typically "C:\Program Files (x86)\Common Files\VST3").
 
 ## OSX
 I'm sorry, but it won't be as easy for you. Due to Apple's licensing fees, I literally cannot afford to make this easy for you. If someone sends me the $99 to join the Apple Developer Program, I will happily make an installable distribution.
  
 ### Option 1: The Easy Way (Probably won't work.)
-__1.__ Download "Killswitch.vst3" from "Distributions/Mac" and put it into "\~/Library/Audio/Plug-Ins/VST3" (if you can't find that folder, CMD-Shift-G and go to "\~/")
+__1.__ [Simply download the "MacKenzieH&C" folder from "macOS" here](https://drive.google.com/drive/folders/1TzjdWOwznmpu03R45NptfqAQHsbZXNCO?usp=sharing) and put it into "\~/Library/Audio/Plug-Ins/VST3" (if you can't find that folder, open Finder, press CMD-Shift-G and go to "\~/Library/Audio/Plug-Ins/VST3")
 
 ### Option 2: The Hard Way (Should work, and will let you build any open-source JUCE programs)
 #### Setup
 __1.__ Install Xcode from the App Store
 
-__2.__ Download JUCE
+__2.__ [Download JUCE.](https://juce.com/get-juce)
 
-__4.__ Move JUCE folder to your Home folder (CMD-Shift-G, "\~/").
+__4.__ Move JUCE folder to your Home folder (open Finder, press CMD-Shift-G, "\~/").
 
 __5.__ Open Projucer, from the Juce folder from earlier.
 
