@@ -30,7 +30,7 @@ __1.__ Download "MacKenzieH&C" folder from "Distributions/macOS" and put it into
 #### Setup
 __1.__ Install Xcode from the App Store
 
-__2.__ Download JUCE
+__2.__ [Download JUCE.](https://juce.com/get-juce)
 
 __4.__ Move JUCE folder to your Home folder (open Finder, press CMD-Shift-G, "\~/").
 
