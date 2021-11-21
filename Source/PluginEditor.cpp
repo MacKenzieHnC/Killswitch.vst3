@@ -17,7 +17,7 @@ KillswitchAudioProcessorEditor::KillswitchAudioProcessorEditor (KillswitchAudioP
 
     auto sidebarMinHeight = (numOptions * (sideItemHeight + sideItemMargin)) + sideItemMargin;
 
-    setResizeLimits(sidebarMinWidth + killswitchMinSide + (sideItemMargin*3), juce::jmax(sidebarMinHeight, killswitchMinSide + (sideItemMargin * 2)), 10000, 10000);
+    setResizeLimits((int)std::round((sidebarMinWidth + killswitchMinSide + (sideItemMargin*3))*2), juce::jmax(sidebarMinHeight, killswitchMinSide + (sideItemMargin * 2)), 10000, 10000);
 
     sidebar.setColour(juce::Label::backgroundColourId, sidebarBGColour);
     addAndMakeVisible(sidebar);
@@ -72,7 +72,7 @@ void KillswitchAudioProcessorEditor::resized()
 {
     auto area = getLocalBounds();
 
-    auto sidebarArea = area.removeFromLeft(juce::jmax(sidebarMinWidth, area.getWidth() / 3));
+    auto sidebarArea = area.removeFromLeft(juce::jmax(sidebarMinWidth, (int)std::round(area.getWidth() / 1.618)));
     sidebar.setBounds(sidebarArea);
 
     auto subSidebarArea = sidebarArea.removeFromTop(sideItemHeight);
@@ -86,9 +86,9 @@ void KillswitchAudioProcessorEditor::resized()
     blockNonNotesButton.setBounds(subSidebarArea.removeFromLeft(sideItemHeight).reduced(sideItemMargin));
     blockNonNotesLabel.setBounds(subSidebarArea);
 
-    auto killswitchWidth = juce::jmax(100, area.getWidth() / 4);
-    auto killswitchHeight = juce::jmax(100, area.getHeight() / 4);
-    killswitch.setBounds(area.getCentreX() - (killswitchWidth/2), area.getCentreY() - (killswitchHeight/2), killswitchWidth, killswitchHeight);
+    auto smallDim = juce::jmin(area.getHeight(), area.getWidth());
+    auto killswitchSide = juce::jmax(100, (int)std::round(smallDim / 1.618));
+    killswitch.setBounds(area.getCentreX() - (killswitchSide/2), area.getCentreY() - (killswitchSide/2), killswitchSide, killswitchSide);
 }
 
 void KillswitchAudioProcessorEditor::buttonClicked (juce::Button* button)
