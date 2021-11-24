@@ -41,5 +41,5 @@ Go to [Releases](https://github.com/MacKenzieHnC/Killswitch.vst3/releases) to do
 ## Linux
 ¯\\_(ツ)\_/¯ I'm so sorry.
 
-Supposedly, [LinVST](https://github.com/osxmidi/LinVst) will let you use the Windows installation instructions. Otherwise, you will have to learn how to install Juce and an IDE, then build this project in the usual way.
+Supposedly, [LinVST](https://github.com/osxmidi/LinVst) will let you use the Windows vs3 file.
 
