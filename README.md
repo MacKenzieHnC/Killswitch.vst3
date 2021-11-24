@@ -41,5 +41,5 @@ Go to [Releases](https://github.com/MacKenzieHnC/Killswitch.vst3/releases) to do
 ## Linux
 ¯\\_(ツ)\_/¯ I'm so sorry.
 
-Supposedly, [LinVST](https://github.com/osxmidi/LinVst) will let you use the Windows vs3 file.
+Supposedly, [LinVST](https://github.com/osxmidi/LinVst) will let you use the Windows vst3 file.
 
