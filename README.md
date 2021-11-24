@@ -5,8 +5,7 @@ A lightweight killswitch VST plugin for audio and midi. Essentially an on/off sw
 - [Behavior](#behavior)
 - [MIDI is quirky](#midi-is-quirky)
 - [Installation](#installation)
-  * [Windows](#windows)
-  * [OSX](#osx)
+  * [Windows and OSX](#windows-and-osx)
   * [Linux](#linux)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
@@ -36,11 +35,8 @@ For a more thorough explanation of MIDI, check out [the official MIDI Associatio
 It is possible to add a "decay" setting, so that the note will not return as loudly, but that would have to be set per-instrument, since my code has no way to predict what would "sound right". If there is interest, I will add this setting. However, if that's the sound you're looking for, I would suggest simply placing the plugin after your synthesizer.
 
 # Installation
-## Windows
-COMING SOON
-
-## OSX
-COMING SOON
+## Windows and OSX
+Go to [Releases](https://github.com/MacKenzieHnC/Killswitch.vst3/releases) to download either the installer or the .vst3 for your system.
 
 ## Linux
 ¯\\_(ツ)\_/¯ I'm so sorry.
